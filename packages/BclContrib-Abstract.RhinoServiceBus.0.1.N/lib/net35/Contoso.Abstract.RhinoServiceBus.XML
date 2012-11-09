@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Contoso.Abstract.RhinoServiceBus</name>
+    </assembly>
+    <members>
+        <member name="T:Contoso.Abstract.IRhinoServiceBus">
+            <summary>
+            IRhinoServiceBus
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoServiceBusAbstractor">
+            <summary>
+            RhinoServiceBusAbstractor
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.IRhinoServiceMessageHandler`1">
+            <summary>
+            IRhinoServiceMessageHandler
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.IOnewayRhinoServiceBus">
+            <summary>
+            IRhinoServiceBus
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.OnewayRhinoServiceBusAbstractor">
+            <summary>
+            RhinoServiceBusAbstractor
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.BootstrapRhinoServiceBusLoadBalancedHost">
+            <summary>
+            BootstrapRhinoServiceBusLoadBalancedHost
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.BootstrapRhinoServiceBusHost">
+            <summary>
+            BootstrapRhinoServiceBusHost
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoServiceBusTransport.Transport`1">
+            <summary>
+            Transport
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoServiceBusTransport.TransportHandler`1">
+            <summary>
+            TransportHandler
+            </summary>
+        </member>
+    </members>
+</doc>

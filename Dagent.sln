@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Dagent", "src\Contoso.Dagent\Contoso.Dagent.csproj", "{FB5A15A0-7791-4782-AB7D-72DFC3C64BBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Dagent.Nuget", "src\Contoso.Dagent.Nuget\Contoso.Dagent.Nuget.csproj", "{3740F699-166B-4E66-8446-1D6E51F67A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.DagentInstaller", "src\Contoso.DagentInstaller\Contoso.DagentInstaller.csproj", "{CFC7ED2A-D649-47B2-A816-8A231CF72D39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Dagent.Tests", "src\Contoso.Dagent.Tests\Contoso.Dagent.Tests.csproj", "{4A78FA50-6617-431C-A34B-6E2F762EC0EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB5A15A0-7791-4782-AB7D-72DFC3C64BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5A15A0-7791-4782-AB7D-72DFC3C64BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5A15A0-7791-4782-AB7D-72DFC3C64BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5A15A0-7791-4782-AB7D-72DFC3C64BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3740F699-166B-4E66-8446-1D6E51F67A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3740F699-166B-4E66-8446-1D6E51F67A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3740F699-166B-4E66-8446-1D6E51F67A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3740F699-166B-4E66-8446-1D6E51F67A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFC7ED2A-D649-47B2-A816-8A231CF72D39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFC7ED2A-D649-47B2-A816-8A231CF72D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFC7ED2A-D649-47B2-A816-8A231CF72D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFC7ED2A-D649-47B2-A816-8A231CF72D39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A78FA50-6617-431C-A34B-6E2F762EC0EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A78FA50-6617-431C-A34B-6E2F762EC0EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A78FA50-6617-431C-A34B-6E2F762EC0EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A78FA50-6617-431C-A34B-6E2F762EC0EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

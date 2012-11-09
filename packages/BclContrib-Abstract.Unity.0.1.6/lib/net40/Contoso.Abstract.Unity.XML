@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Contoso.Abstract.Unity</name>
+    </assembly>
+    <members>
+        <member name="T:Contoso.Abstract.Internal.UnityStrategiesExtension">
+            <summary>
+            UnityStrategiesExtension
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.IUnityServiceRegistrar">
+            <summary>
+            IUnityServiceRegistrar
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.UnityServiceRegistrar">
+            <summary>
+            UnityServiceRegistrar
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.IUnityServiceLocator">
+            <summary>
+            IUnityServiceLocator
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.UnityServiceLocator">
+            <summary>
+            UnityServiceLocator
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Internal.UnityPropertySelectorPolicy">
+            <summary>
+            UnityPropertySelectorPolicy
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Internal.UnityMethodSelectorPolicy">
+            <summary>
+            UnityMethodSelectorPolicy
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Interceptor">
+            <summary>
+            Interceptor
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Internal.UnityConstructorSelectorPolicy">
+            <summary>
+            UnityConstructorSelectorPolicy
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Dagent</id>
+    <version>0.0.0</version>
+    <authors>Sky Morey</authors>
+    <owners>Sky Morey</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Deployment Agent</summary>
+    <description>Dagent is a machine level deployment agent.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <tags>nuget deployment service</tags>
+    <dependencies>
+      <dependency id="Rhino.ServiceBus"/>
+      <dependency id="Autofac" version="[2.5.2.830]"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="build\*.dll" target="lib\net40" />
+    <file src="build\*.exe" target="lib\net40" />
+    <file src="tools\*" target="src\Contoso.Dagent\tools" />
+  </files>
+</package>

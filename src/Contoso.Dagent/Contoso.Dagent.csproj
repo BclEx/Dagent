@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FB5A15A0-7791-4782-AB7D-72DFC3C64BBB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Contoso</RootNamespace>
+    <AssemblyName>Contoso.Dagent</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;CLR4</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="Contoso.Abstract.Log4Net">
+      <HintPath>..\..\packages\BclContrib-Abstract.Log4Net.0.1.6\lib\NET40\Contoso.Abstract.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Contoso.Abstract.RhinoServiceBus">
+      <HintPath>..\..\packages\BclContrib-Abstract.RhinoServiceBus.0.1.N\lib\NET40\Contoso.Abstract.RhinoServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="Contoso.Abstract.Unity">
+      <HintPath>..\..\packages\BclContrib-Abstract.Unity.0.1.6\lib\NET40\Contoso.Abstract.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet, Version=1.6.21205.9031, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <ExecutableExtension>.exe</ExecutableExtension>
+      <HintPath>..\..\lib\NuGet.exe</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Queues">
+      <HintPath>..\..\packages\BclContrib-Abstract.RhinoServiceBus.0.1.N\lib\NET40\Rhino.Queues.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.ServiceBus">
+      <HintPath>..\..\packages\BclContrib-Abstract.RhinoServiceBus.0.1.N\lib\NET40\Rhino.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.ServiceBus.Host, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <ExecutableExtension>.exe</ExecutableExtension>
+      <HintPath>..\..\packages\BclContrib-Abstract.RhinoServiceBus.0.1.N\lib\NET40\x86 UAC\Rhino.ServiceBus.Host.exe</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Abstract">
+      <HintPath>..\..\packages\BclContrib-Abstract.0.1.6\lib\NET40\System.Abstract.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\v1.0\System.Management.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="+FromCoreEx\Collections\IIndexer.cs" />
+    <Compile Include="+FromCoreEx\Configuration\ConfigurationElementCollectionEx.cs" />
+    <Compile Include="+FromCoreEx\Configuration\ConfigurationElementEx.cs" />
+    <Compile Include="+FromCoreEx\Configuration\ConfigurationManagerEx.cs" />
+    <Compile Include="+FromCoreEx\Configuration\ConfigurationSectionEx.cs" />
+    <Compile Include="Bootstrap.cs" />
+    <Compile Include="Bus\NugetHandlers\DeployHandler.cs" />
+    <Compile Include="Configuration\AppSection.cs" />
+    <Compile Include="Configuration\AgentMode.cs" />
+    <Compile Include="Configuration\ApplicationsElement.cs" />
+    <Compile Include="Configuration\ApplicationElement.cs" />
+    <Compile Include="Configuration\HostingSection.cs" />
+    <Compile Include="Configuration\ImpersonateTokenRef.cs" />
+    <Compile Include="Configuration\IdentityElement.cs" />
+    <Compile Include="Configuration\NotificationElement.cs" />
+    <Compile Include="Hosting\ApplicationImpersonationContext.cs" />
+    <Compile Include="Hosting\ClientImpersonationContext.cs" />
+    <Compile Include="Hosting\Deploy\DeployApplication.cs" />
+    <Compile Include="Hosting\Deploy\DeployContext.cs" />
+    <Compile Include="Hosting\ProcessImpersonationContext.cs" />
+    <Compile Include="UnsafeNativeMethods.cs" />
+    <Compile Include="Hosting\HostingException.cs" />
+    <Compile Include="Hosting\ImpersonationContext.cs" />
+    <Compile Include="Hosting\HostingEnvironment+Identity.cs" />
+    <Compile Include="Hosting\HostingEnvironment.cs" />
+    <Compile Include="NuGet.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Domains\ApplicationContext.cs" />
+    <Compile Include="Domains\ITenantProvider.cs" />
+    <Compile Include="Domains\ServiceAccount.cs" />
+    <Compile Include="Domains\ServiceAccountMode.cs" />
+    <Compile Include="Domains\Tenants\MultiTenantProvider.cs" />
+    <Compile Include="Domains\Tenants\SingleTenantProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config" />
+    <None Include="..\..\nuspecs\Contoso.Dagent.nuspec">
+      <Link>Contoso.Dagent.nuspec</Link>
+    </None>
+    <None Include="packages.config" />
+    <None Include="tools\DagentInstaller.ps1" />
+    <None Include="tools\DagentSetup.psm1" />
+    <None Include="tools\init.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contoso.Dagent.Nuget\Contoso.Dagent.Nuget.csproj">
+      <Project>{3740F699-166B-4E66-8446-1D6E51F67A4A}</Project>
+      <Name>Contoso.Dagent.Nuget.4</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Contoso.Abstract.Log4Net</name>
+    </assembly>
+    <members>
+        <member name="T:Contoso.Abstract.ILog4NetServiceLog">
+            <summary>
+            ILog4NetServiceLog
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Log4NetServiceLog">
+            <summary>
+            Log4NetServiceLog
+            </summary>
+        </member>
+    </members>
+</doc>
