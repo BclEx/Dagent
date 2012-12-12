@@ -175,7 +175,7 @@
     <value>AgentsCommandUpdateSuccessful</value>
   </data>
   <data name="AgentsCommandUsageSummary" xml:space="preserve">
-    <value>&lt;List|Add|Remove|Enable|Disable|Update&gt; -Name [name] -Remote [remote]</value>
+    <value>&lt;List|Add|Remove|Enable|Disable|Update&gt; -Name [name] -Agent [agent]</value>
   </data>
   <data name="DeployCommandApiKey" xml:space="preserve">
     <value>The API key for the remote.</value>

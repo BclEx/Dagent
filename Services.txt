@@ -1,0 +1,4 @@
+Dagent
+=======================
+C:\_GITHUB\Dagent\src\Contoso.Dagent\bin\Debug\Rhino.ServiceBus.Host.exe
+/Name:Service /Action:Debug /Assembly:"Contoso.Dagent.dll"

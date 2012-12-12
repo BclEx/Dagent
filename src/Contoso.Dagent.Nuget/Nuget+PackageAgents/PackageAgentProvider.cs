@@ -27,6 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NuGet;
+using System.ComponentModel.Composition;
 namespace Contoso.Nuget
 {
     public interface IPackageAgentProvider
@@ -37,7 +38,7 @@ namespace Contoso.Nuget
         void SavePackageAgents(IEnumerable<PackageAgent> remotes);
     }
 
-    //[Export(typeof(IPackageAgentProvider))]
+    [Export(typeof(IPackageAgentProvider))]
     public class PackageAgentProvider : IPackageAgentProvider
     {
         private readonly IEnumerable<PackageAgent> _defaultPackageAgents;
@@ -46,7 +47,7 @@ namespace Contoso.Nuget
         internal const string DisabledPackageAgentsSectionName = "disabledPackageAgents";
         internal const string PackageAgentsSectionName = "packageAgents";
 
-        //[ImportingConstructor]
+        [ImportingConstructor]
         public PackageAgentProvider(ISettings settingsManager)
             : this(settingsManager, defaultAgents: null) { }
         public PackageAgentProvider(ISettings settingsManager, IEnumerable<PackageAgent> defaultAgents)

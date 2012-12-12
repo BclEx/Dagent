@@ -47,7 +47,6 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Content Include="App.config" />
     <None Include="DagentInstaller\InstallDagent.cmd" />
     <None Include="DagentInstaller\InstallDagent.ps1" />
     <None Include="tools\DagentInstaller.ps1" />

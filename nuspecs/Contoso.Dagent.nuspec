@@ -16,7 +16,7 @@
     <file src="..\build\*.dll" target="lib\net40" exclude="**\Contoso.DagentInstaller.dll;**\Contoso.Dagent.Tests.dll;**\xunit.dll;**\xunit.extensions.dll"/>
     <file src="..\build\*.exe" target="lib\net40" />
     <file src="..\build\Contoso.Dagent.Nuget.dll" target="content\Dagent\lib" />
-    <file src="..\src\Contoso.DagentInstaller\App.config" target="content" />
+    <file src="..\src\Contoso.Dagent\App.config" target="content" />
     <file src="..\src\Contoso.DagentInstaller\Dagent\*.*" target="content\Dagent" />
     <file src="..\src\Contoso.DagentInstaller\tools\*.*" target="tools" />
   </files>

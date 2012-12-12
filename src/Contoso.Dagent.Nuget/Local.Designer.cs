@@ -232,7 +232,7 @@ namespace Contoso {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;List|Add|Remove|Enable|Disable|Update&gt; -Name [name] -Remote [remote].
+        ///   Looks up a localized string similar to &lt;List|Add|Remove|Enable|Disable|Update&gt; -Name [name] -Agent [agent].
         /// </summary>
         internal static string AgentsCommandUsageSummary {
             get {
