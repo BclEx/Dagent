@@ -38,7 +38,7 @@ namespace Contoso.Nuget
                 return null;
             }
             agent = provider.ResolveAgent(agent, out defaultEmail);
-            // CommandLineUtility.ValidateAgent(agent);
+            // Utility.ValidateAgent(agent);
             return agent;
         }
 

@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Contoso.Abstract.Unity</name>
+    </assembly>
+    <members>
+        <member name="T:Contoso.Abstract.IUnityServiceLocator">
+            <summary>
+            IUnityServiceLocator
+            </summary>
+        </member>
+        <member name="P:Contoso.Abstract.IUnityServiceLocator.Container">
+            <summary>
+            Gets the container.
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.UnityServiceLocator">
+            <summary>
+            UnityServiceLocator
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.UnityServiceLocator"/> class.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.#ctor(Microsoft.Practices.Unity.IUnityContainer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.UnityServiceLocator"/> class.
+            </summary>
+            <param name="container">The container.</param>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.GetService(System.Type)">
+            <summary>
+            Gets the service object of the specified type.
+            </summary>
+            <param name="serviceType">An object that specifies the type of service object to get.</param>
+            <returns>
+            A service object of type <paramref name="serviceType"/>.
+            -or-
+            null if there is no service object of type <paramref name="serviceType"/>.
+            </returns>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.CreateChild(System.Object)">
+            <summary>
+            Creates the child.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.GetUnderlyingContainer``1">
+            <summary>
+            Gets the underlying container.
+            </summary>
+            <typeparam name="TContainer">The type of the container.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.Resolve``1">
+            <summary>
+            Resolves this instance.
+            </summary>
+            <typeparam name="TService">The type of the service.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.Resolve``1(System.String)">
+            <summary>
+            Resolves the specified name.
+            </summary>
+            <typeparam name="TService">The type of the service.</typeparam>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.Resolve(System.Type)">
+            <summary>
+            Resolves the specified service type.
+            </summary>
+            <param name="serviceType">Type of the service.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.Resolve(System.Type,System.String)">
+            <summary>
+            Resolves the specified service type.
+            </summary>
+            <param name="serviceType">Type of the service.</param>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.ResolveAll``1">
+            <summary>
+            Resolves all.
+            </summary>
+            <typeparam name="TService">The type of the service.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.ResolveAll(System.Type)">
+            <summary>
+            Resolves all.
+            </summary>
+            <param name="serviceType">Type of the service.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.Inject``1(``0)">
+            <summary>
+            Injects the specified instance.
+            </summary>
+            <typeparam name="TService">The type of the service.</typeparam>
+            <param name="instance">The instance.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.Release(System.Object)">
+            <summary>
+            Releases the specified instance.
+            </summary>
+            <param name="instance">The instance.</param>
+        </member>
+        <member name="M:Contoso.Abstract.UnityServiceLocator.TearDown``1(``0)">
+            <summary>
+            Tears down.
+            </summary>
+            <typeparam name="TService">The type of the service.</typeparam>
+            <param name="instance">The instance.</param>
+        </member>
+        <member name="P:Contoso.Abstract.UnityServiceLocator.Registrar">
+            <summary>
+            Gets the registrar.
+            </summary>
+        </member>
+        <member name="P:Contoso.Abstract.UnityServiceLocator.Container">
+            <summary>
+            Gets the container.
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Internal.UnityConstructorSelectorPolicy">
+            <summary>
+            UnityConstructorSelectorPolicy
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.IUnityServiceRegistrar">
+            <summary>
+            IUnityServiceRegistrar
+            </summary>
+        </member>
+        <member name="P:Contoso.Abstract.IUnityServiceRegistrar.RequestLifetimeBuilder">
+            <summary>
+            Gets the container.
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.UnityServiceRegistrar">
+            <summary>
+            UnityServiceRegistrar
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Internal.UnityStrategiesExtension">
+            <summary>
+            UnityStrategiesExtension
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Interceptor">
+            <summary>
+            Interceptor
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Internal.UnityMethodSelectorPolicy">
+            <summary>
+            UnityMethodSelectorPolicy
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Internal.UnityPropertySelectorPolicy">
+            <summary>
+            UnityPropertySelectorPolicy
+            </summary>
+        </member>
+    </members>
+</doc>

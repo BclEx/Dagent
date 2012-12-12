@@ -171,6 +171,9 @@
   <data name="AgentsCommandUniqueName" xml:space="preserve">
     <value>The name specified has already been added to the list of available package agents. Please provide a unique name.</value>
   </data>
+  <data name="AgentsCommandUpdateSuccessful" xml:space="preserve">
+    <value>AgentsCommandUpdateSuccessful</value>
+  </data>
   <data name="AgentsCommandUsageSummary" xml:space="preserve">
     <value>&lt;List|Add|Remove|Enable|Disable|Update&gt; -Name [name] -Remote [remote]</value>
   </data>

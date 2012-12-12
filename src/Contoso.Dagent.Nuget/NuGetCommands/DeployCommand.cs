@@ -31,11 +31,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using Contoso.Bus.NugetMessages;
+using Contoso.Nuget;
 using NuGet;
 using NuGet.Commands;
 using NuGet.Common;
-using Contoso.Nuget;
-using System.Diagnostics;
 namespace Contoso.NuGetCommands
 {
     [Command(typeof(Local), "deploy", "DeployCommandDescription", MinArgs = 2, MaxArgs = 3, UsageDescriptionResourceName = "DeployCommandUsageDescription", UsageSummaryResourceName = "DeployCommandUsageSummary", UsageExampleResourceName = "DeployCommandUsageExamples")]
@@ -62,25 +61,12 @@ namespace Contoso.NuGetCommands
             //if (!System.Messaging.MessageQueue.Exists(remoteQueue))
             //    throw new CommandLineException(Local.NoRemoteQueueFound, new object[] { remoteQueue });
             //
-            DeployMessage.Item[] items;
             bool fromSpec;
-            if (Path.GetFileName(packageId).EndsWith(PackageReferenceRepository.PackageReferenceFile, StringComparison.OrdinalIgnoreCase))
+            DeployMessage.Item[] items = GetItemsFromPackage(packageId, out fromSpec);
+            if (items == null)
             {
-                if (IncludeDependency)
-                    throw new CommandLineException("Message needed");
-                fromSpec = true;
-                Prerelease = true;
-                items = DeployPackagesFromConfigFile(GetPackageReferenceFile(packageId));
-                if (items == null)
-                {
-                    Console.WriteLine(Local.DeployCommandNoItemsFound, packageId);
-                    return;
-                }
-            }
-            else
-            {
-                fromSpec = !IncludeDependency;
-                items = new[] { new DeployMessage.Item { PackageId = packageId, Version = Version } };
+                Console.WriteLine(Local.DeployCommandNoItemsFound, packageId);
+                return;
             }
             var bus = ServiceBusManager.Current;
             DeployReply.WaitState waitState = null;
@@ -98,7 +84,7 @@ namespace Contoso.NuGetCommands
                 Items = items,
                 ExcludeVersion = !IncludeVersion,
                 Prerelease = Prerelease,
-                Email = Email ?? defaultEmail,
+                Email = (Email ?? defaultEmail),
                 Project = Project,
             });
             Console.WriteLine(Local.DeployCommandSent, agent, packageId);
@@ -107,6 +93,21 @@ namespace Contoso.NuGetCommands
                 Console.WriteLine("Waiting for reply...");
                 waitState.DoWait();
             }
+        }
+
+        private DeployMessage.Item[] GetItemsFromPackage(string packageId, out bool fromSpec)
+        {
+            if (Path.GetFileName(packageId).EndsWith(Constants.PackageReferenceFile, StringComparison.OrdinalIgnoreCase))
+            {
+                if (IncludeDependency)
+                    throw new CommandLineException("Message needed");
+                fromSpec = true;
+                Prerelease = true;
+                return DeployPackagesFromConfigFile(GetPackageReferenceFile(packageId));
+            }
+            // single
+            fromSpec = !IncludeDependency;
+            return new[] { new DeployMessage.Item { PackageId = packageId, Version = Version } };
         }
 
         private string GetRemoteApiKey(string remote, bool throwIfNotFound = true)
@@ -125,11 +126,11 @@ namespace Contoso.NuGetCommands
 
         private DeployMessage.Item[] DeployPackagesFromConfigFile(PackageReferenceFile file)
         {
-            var source = file.GetPackageReferences().ToList();
-            if (!source.Any())
+            var references = file.GetPackageReferences().ToList();
+            if (!references.Any())
                 return null;
             var list = new List<DeployMessage.Item>();
-            foreach (PackageReference reference in source)
+            foreach (var reference in references)
             {
                 if (string.IsNullOrEmpty(reference.Id))
                     throw new InvalidDataException(string.Format(CultureInfo.CurrentCulture, Local.DeployCommandInvalidPackageReference, new[] { Arguments[1] }));

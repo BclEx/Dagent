@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Contoso.Abstract.Log4Net</name>
+    </assembly>
+    <members>
+        <member name="T:Contoso.Abstract.ILog4NetServiceLog">
+            <summary>
+            ILog4NetServiceLog
+            </summary>
+        </member>
+        <member name="P:Contoso.Abstract.ILog4NetServiceLog.Log">
+            <summary>
+            Gets the log.
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.Log4NetServiceLog">
+            <summary>
+            Log4NetServiceLog
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.Log4NetServiceLog.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.Log4NetServiceLog"/> class.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:Contoso.Abstract.Log4NetServiceLog.#ctor(log4net.ILog)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.Log4NetServiceLog"/> class.
+            </summary>
+            <param name="log">The log.</param>
+        </member>
+        <member name="M:Contoso.Abstract.Log4NetServiceLog.GetService(System.Type)">
+            <summary>
+            Gets the service object of the specified type.
+            </summary>
+            <param name="serviceType">An object that specifies the type of service object to get.</param>
+            <returns>
+            A service object of type <paramref name="serviceType"/>.
+            -or-
+            null if there is no service object of type <paramref name="serviceType"/>.
+            </returns>
+        </member>
+        <member name="M:Contoso.Abstract.Log4NetServiceLog.Get(System.String)">
+            <summary>
+            Gets the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.Log4NetServiceLog.Get(System.Type)">
+            <summary>
+            Gets the specified name.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.Log4NetServiceLog.Write(System.Abstract.ServiceLog.LogLevel,System.Exception,System.String)">
+            <summary>
+            Writes the specified level.
+            </summary>
+            <param name="level">The level.</param>
+            <param name="ex">The ex.</param>
+            <param name="s">The s.</param>
+        </member>
+        <member name="P:Contoso.Abstract.Log4NetServiceLog.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:Contoso.Abstract.Log4NetServiceLog.Log">
+            <summary>
+            Gets the log.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -39,17 +39,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Contoso.Abstract.RhinoServiceBus">
-      <HintPath>..\..\packages\BclContrib-Abstract.RhinoServiceBus.0.1.N\lib\NET40\Contoso.Abstract.RhinoServiceBus.dll</HintPath>
+      <HintPath>..\..\packages\BclEx-Abstract.RhinoServiceBus.1.0.0\lib\net40\Contoso.Abstract.RhinoServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NuGet">
       <HintPath>..\..\lib\NuGet.exe</HintPath>
     </Reference>
     <Reference Include="Rhino.ServiceBus">
-      <HintPath>..\..\packages\BclContrib-Abstract.RhinoServiceBus.0.1.N\lib\NET40\Rhino.ServiceBus.dll</HintPath>
+      <HintPath>..\..\lib\Rhino.ServiceBus\Rhino.ServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Abstract">
-      <HintPath>..\..\packages\BclContrib-Abstract.0.1.6\lib\NET40\System.Abstract.dll</HintPath>
+      <HintPath>..\..\packages\BclEx-Abstract.1.0.0\lib\net40\System.Abstract.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
@@ -68,12 +68,8 @@
     <Compile Include="NuGetCommands\DeployLocalCommand.cs" />
     <Compile Include="NuGetCommands\AgentsCommand.cs" />
     <Compile Include="Nuget+PackageAgents\PackageAgentProvider.cs" />
-    <Compile Include="PowerShell\DagentPSHostRawUserInterface.cs" />
-    <Compile Include="PowerShell\DagentPSHostUserInterface.cs" />
-    <Compile Include="PowerShell\DagentPSHost.cs" />
-    <Compile Include="PowerShell\IConsole.cs" />
+    <Compile Include="PowerShell\RunspaceExtensions+NuGet.cs" />
     <Compile Include="PowerShell\RunspaceExtensions.cs" />
-    <Compile Include="PowerShell\RunspaceManager.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Local.Designer.cs">
       <AutoGen>True</AutoGen>

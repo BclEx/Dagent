@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Dagent</id>
-    <version>0.0.0</version>
+    <version>1.0.0</version>
     <authors>Sky Morey</authors>
     <owners>Sky Morey</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -11,14 +11,13 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>nuget deployment service</tags>
-    <dependencies>
-      <dependency id="Rhino.ServiceBus"/>
-      <dependency id="Autofac" version="[2.5.2.830]"/>
-    </dependencies>
   </metadata>
   <files>
-    <file src="build\*.dll" target="lib\net40" />
-    <file src="build\*.exe" target="lib\net40" />
-    <file src="tools\*" target="src\Contoso.Dagent\tools" />
+    <file src="..\build\*.dll" target="lib\net40" exclude="**\Contoso.DagentInstaller.dll;**\Contoso.Dagent.Tests.dll;**\xunit.dll;**\xunit.extensions.dll"/>
+    <file src="..\build\*.exe" target="lib\net40" />
+    <file src="..\build\Contoso.Dagent.Nuget.dll" target="content\Dagent\lib" />
+    <file src="..\src\Contoso.DagentInstaller\App.config" target="content" />
+    <file src="..\src\Contoso.DagentInstaller\Dagent\*.*" target="content\Dagent" />
+    <file src="..\src\Contoso.DagentInstaller\tools\*.*" target="tools" />
   </files>
 </package>

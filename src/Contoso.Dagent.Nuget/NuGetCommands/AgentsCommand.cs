@@ -26,90 +26,80 @@ THE SOFTWARE.
 using System;
 using System.ComponentModel.Composition;
 using System.Linq;
+using Contoso.Nuget;
 using NuGet;
 using NuGet.Commands;
 using NuGet.Common;
-using Contoso.Nuget;
 namespace Contoso.NuGetCommands
 {
     [Command(typeof(Local), "agents", "AgentsCommandDescription", UsageSummaryResourceName = "AgentsCommandUsageSummary", MinArgs = 0, MaxArgs = 1)]
     public class AgentsCommand : Command
     {
+        private readonly IPackageAgentProvider _agentProvider;
+
         [ImportingConstructor]
         public AgentsCommand(IPackageAgentProvider agentProvider)
         {
             if (agentProvider == null)
                 throw new ArgumentNullException("agentProvider");
-            AgentProvider = agentProvider;
+            _agentProvider = agentProvider;
         }
 
-        private void AddNewAgent(string name, string agent)
+        private void AddNewAgent()
         {
-            if (string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(Name))
                 throw new CommandLineException(Local.AgentsCommandNameRequired);
-            if (string.Equals(name, Local.ReservedPackageNameAll))
+            if (string.Equals(Name, Local.ReservedPackageNameAll))
                 throw new CommandLineException(Local.AgentsCommandAllNameIsReserved);
-            if (string.IsNullOrWhiteSpace(agent))
+            if (string.IsNullOrWhiteSpace(Agent))
                 throw new CommandLineException(Local.AgentsCommandAgentRequired);
-            if (!Utility.IsValidAgent(agent))
+            if (!Utility.IsValidAgent(Agent))
                 throw new CommandLineException(Local.AgentsCommandInvalidAgent);
-            var list = AgentProvider.LoadPackageAgents().ToList();
-            if (list.Any(pr => string.Equals(name, pr.Name, StringComparison.OrdinalIgnoreCase)))
+            var list = _agentProvider.LoadPackageAgents().ToList();
+            if (list.Any(pr => string.Equals(Name, pr.Name, StringComparison.OrdinalIgnoreCase)))
                 throw new CommandLineException(Local.AgentsCommandUniqueName);
-            if (list.Any(pr => string.Equals(agent, pr.Agent, StringComparison.OrdinalIgnoreCase)))
+            if (list.Any(pr => string.Equals(Agent, pr.Agent, StringComparison.OrdinalIgnoreCase)))
                 throw new CommandLineException(Local.AgentsCommandUniqueAgent);
-            var item = new PackageAgent(agent, name);
+            var item = new PackageAgent(Agent, Name);
             list.Add(item);
-            AgentProvider.SavePackageAgents(list);
-            Console.WriteLine(Local.AgentsCommandAgentAddedSuccessfully, new object[] { name });
+            _agentProvider.SavePackageAgents(list);
+            Console.WriteLine(Local.AgentsCommandAgentAddedSuccessfully, new object[] { Name });
         }
 
-        private void EnableOrDisableAgent(string name, bool enabled)
+        private void EnableOrDisableAgent(bool enabled)
         {
-            if (string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrEmpty(Name))
                 throw new CommandLineException(Local.AgentsCommandNameRequired);
-            var agents = AgentProvider.LoadPackageAgents().ToList();
-            var agent = agents.Where(ps => string.Equals(name, ps.Name, StringComparison.OrdinalIgnoreCase)).ToList();
-            if (!agent.Any())
-                throw new CommandLineException(Local.AgentsCommandNoMatchingAgentsFound, new object[] { name });
-            agent.ForEach(pa => pa.IsEnabled = enabled);
-            AgentProvider.SavePackageAgents(agents);
-            Console.WriteLine(enabled ? Local.AgentsCommandAgentEnabledSuccessfully : Local.AgentsCommandAgentDisabledSuccessfully, new object[] { name });
+            var agents = _agentProvider.LoadPackageAgents().ToList();
+            var agentE = agents.Where(ps => string.Equals(Name, ps.Name, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (!agentE.Any())
+                throw new CommandLineException(Local.AgentsCommandNoMatchingAgentsFound, new object[] { Name });
+            foreach (var agent in agentE)
+                agent.IsEnabled = enabled;
+            _agentProvider.SavePackageAgents(agents);
+            Console.WriteLine(enabled ? Local.AgentsCommandAgentEnabledSuccessfully : Local.AgentsCommandAgentDisabledSuccessfully, new object[] { Name });
         }
 
         public override void ExecuteCommand()
         {
-            var arg = (Arguments.Any() ? Arguments.First().ToUpperInvariant() : null);
-            if (arg != null && arg != "LIST")
-            {
-                if (arg != "ADD")
-                {
-                    if (arg != "REMOVE")
-                    {
-                        if (arg != "ENABLE")
-                        {
-                            if (arg == "DISABLE")
-                                EnableOrDisableAgent(Name, false);
-                            return;
-                        }
-                        EnableOrDisableAgent(Name, true);
-                        return;
-                    }
-                    RemoveAgent(Name);
-                    return;
-                }
-            }
-            else
-            {
+            var arg = Arguments.FirstOrDefault();
+            if (string.IsNullOrEmpty(arg) && arg.Equals("List", StringComparison.OrdinalIgnoreCase))
                 PrintRegisteredAgents();
-                return;
-            }
-            AddNewAgent(Name, Agent);
+            else if (arg.Equals("Add", StringComparison.OrdinalIgnoreCase))
+                AddNewAgent();
+            else if (arg.Equals("Remove", StringComparison.OrdinalIgnoreCase))
+                RemoveAgent();
+            else if (arg.Equals("Enable", StringComparison.OrdinalIgnoreCase))
+                EnableOrDisableAgent(true);
+            else if (arg.Equals("Disable", StringComparison.OrdinalIgnoreCase))
+                EnableOrDisableAgent(false);
+            else if (arg.Equals("Update", StringComparison.OrdinalIgnoreCase))
+                UpdatePackageAgent();
         }
 
         private void PrintRegisteredAgents()
         {
-            var list = AgentProvider.LoadPackageAgents().ToList();
+            var list = _agentProvider.LoadPackageAgents().ToList();
             if (!list.Any())
                 Console.WriteLine(Local.AgentsCommandNoAgents);
             else
@@ -128,17 +118,43 @@ namespace Contoso.NuGetCommands
             }
         }
 
-        private void RemoveAgent(string name)
+        private void RemoveAgent()
         {
-            if (string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrEmpty(Name))
                 throw new CommandLineException(Local.AgentsCommandNameRequired);
-            var agents = AgentProvider.LoadPackageAgents().ToList();
-            var list = agents.Where(pa => string.Equals(name, pa.Name, StringComparison.OrdinalIgnoreCase)).ToList();
-            if (!list.Any())
-                throw new CommandLineException(Local.AgentsCommandNoMatchingAgentsFound, new object[] { name });
-            list.ForEach(pa => agents.Remove(pa));
-            AgentProvider.SavePackageAgents(agents);
-            Console.WriteLine(Local.AgentsCommandAgentRemovedSuccessfully, new object[] { name });
+            var agents = _agentProvider.LoadPackageAgents().ToList();
+            var agentE = agents.Where(pa => string.Equals(Name, pa.Name, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (!agentE.Any())
+                throw new CommandLineException(Local.AgentsCommandNoMatchingAgentsFound, new object[] { Name });
+            agents.RemoveAll(new Predicate<PackageAgent>(agentE.Contains));
+            _agentProvider.SavePackageAgents(agents);
+            Console.WriteLine(Local.AgentsCommandAgentRemovedSuccessfully, new object[] { Name });
+        }
+
+        private void UpdatePackageAgent()
+        {
+            Func<PackageAgent, bool> predicate = null;
+            if (string.IsNullOrEmpty(Name))
+                throw new CommandLineException(Local.AgentsCommandNameRequired);
+            var agents = _agentProvider.LoadPackageAgents().ToList();
+            int index = agents.FindIndex(pa => Name.Equals(pa.Name, StringComparison.OrdinalIgnoreCase));
+            if (index == -1)
+                throw new CommandLineException(Local.AgentsCommandNoMatchingAgentsFound, new object[] { Name });
+            var item = agents[index];
+            if (!string.IsNullOrEmpty(Agent) && !item.Agent.Equals(Agent, StringComparison.OrdinalIgnoreCase))
+            {
+                if (!Utility.IsValidAgent(Agent))
+                    throw new CommandLineException(Local.AgentsCommandInvalidAgent);
+                if (predicate == null)
+                    predicate = pa => string.Equals(Agent, pa.Agent, StringComparison.OrdinalIgnoreCase);
+                if (agents.Any(predicate))
+                    throw new CommandLineException(Local.AgentsCommandUniqueAgent);
+                item = new PackageAgent(Agent, item.Name);
+            }
+            agents.RemoveAt(index);
+            agents.Insert(index, item);
+            _agentProvider.SavePackageAgents(agents);
+            Console.WriteLine(Local.AgentsCommandUpdateSuccessful, new object[] { Name });
         }
 
         [Option(typeof(Local), "AgentsCommandNameDescription")]
@@ -146,7 +162,5 @@ namespace Contoso.NuGetCommands
 
         [Option(typeof(Local), "AgentsCommandAgentDescription", AltName = "src")]
         public string Agent { get; set; }
-
-        public IPackageAgentProvider AgentProvider { get; private set; }
     }
 }

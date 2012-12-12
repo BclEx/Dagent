@@ -75,7 +75,7 @@ namespace Contoso.Nuget
 
         public override string ToString() { return Name + " [" + Agent + "]"; }
 
-        public override int GetHashCode() { return Name.GetHashCode() * 3137 + Agent.GetHashCode(); }
+        public override int GetHashCode() { return (Name.GetHashCode() * 0xc41) + Agent.GetHashCode(); }
 
         public PackageAgent Clone() { return new PackageAgent(Agent, Name, DefaultEmail, IsEnabled); }
     }

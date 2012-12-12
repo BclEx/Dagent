@@ -43,7 +43,7 @@ namespace Contoso.Nuget
     [Export(typeof(IScriptExecutor))]
     public class PSScriptExecutor : IScriptExecutor
     {
-        private static readonly IRunspaceManager _runspaceManager = new RunspaceManager();
+        //private static readonly IRunspaceManager _runspaceManager = new RunspaceManager();
 
         public void ExecuteInstallScript(string installPath, IPackage package, object project, ILogger logger)
         {
@@ -105,12 +105,12 @@ namespace Contoso.Nuget
         private void RunPS1(string fullPath, object[] args)
         {
             var cmd = "$__pc_args=@(); $input|%{$__pc_args+=$_}; & " + Utility.EscapePSPath(fullPath) + " $__pc_args[0] $__pc_args[1] $__pc_args[2] $__pc_args[3]; Remove-Variable __pc_args -Scope 0";
-            //RunProcess("powershell.exe", cmd, 5 * 60 * 1000);
-            var runspace = _runspaceManager.GetRunspace(null, "Dagent").Item1;
-            var results = runspace.Invoke(cmd, args, true, 5 * 60 * 1000);
-            if (results != null)
-                foreach (PSObject obj in results)
-                    Console.WriteLine(obj.ToString());
+            RunProcess("powershell.exe", cmd, 5 * 60 * 1000);
+            //var runspace = _runspaceManager.GetRunspace(null, "Dagent").Item1;
+            //var results = runspace.Invoke(cmd, args, true, 5 * 60 * 1000);
+            //if (results != null)
+            //    foreach (PSObject obj in results)
+            //        Console.WriteLine(obj.ToString());
         }
 
         private void RunProcess(string fileName, string arguments, int timeoutMilliseconds)

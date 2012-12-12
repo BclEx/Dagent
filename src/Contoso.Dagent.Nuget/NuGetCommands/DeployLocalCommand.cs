@@ -23,13 +23,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 #endregion
+using System;
 using System.ComponentModel.Composition;
+using System.Reflection;
+using Contoso.Nuget;
 using NuGet;
 using NuGet.Commands;
-using System;
-using System.IO;
-using System.Globalization;
-using Contoso.Nuget;
 using NuGet.Common;
 namespace Contoso.NuGetCommands
 {
@@ -37,12 +36,11 @@ namespace Contoso.NuGetCommands
     public class DeployLocalCommand : InstallCommand
     {
         [ImportingConstructor]
-        public DeployLocalCommand(IScriptExecutor scriptExecutor, IPackageRepositoryFactory packageRepositoryFactory, IPackageSourceProvider sourceProvider)
-            : base(packageRepositoryFactory, sourceProvider)
+        public DeployLocalCommand(IScriptExecutor scriptExecutor, IPackageRepositoryFactory packageRepositoryFactory, IPackageSourceProvider sourceProvider, IFileSystem startingPoint)
+            : base(packageRepositoryFactory, sourceProvider, startingPoint)
         {
             ScriptExecutor = scriptExecutor;
         }
-
 
         protected override IPackageManager CreatePackageManager(IFileSystem fileSystem)
         {
@@ -80,19 +78,14 @@ namespace Contoso.NuGetCommands
 
         #region base
 
-        protected virtual IPackageManager base_CreatePackageManager(IFileSystem fileSystem)
+        private static MethodInfo _getRepositoryInfo = typeof(InstallCommand).GetMethod("GetRepository", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        protected IPackageManager base_CreatePackageManager(IFileSystem fileSystem)
         {
-            var sourceRepository = base_GetRepository();
+            var sourceRepository = (IPackageRepository)_getRepositoryInfo.Invoke(this, null);
             var allowMultipleVersions = base_AllowMultipleVersions;
             var pathResolver = new DefaultPackagePathResolver(fileSystem, allowMultipleVersions);
             return new PackageManager(sourceRepository, pathResolver, fileSystem, new LocalPackageRepository(pathResolver, fileSystem)) { Logger = Console };
-        }
-
-        private IPackageRepository base_GetRepository()
-        {
-            var repository = AggregateRepositoryHelper.CreateAggregateRepositoryFromSources(RepositoryFactory, SourceProvider, Source);
-            repository.Logger = Console;
-            return repository;
         }
 
         private bool base_AllowMultipleVersions

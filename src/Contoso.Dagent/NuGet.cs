@@ -28,7 +28,11 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using NuGet;
+using NuGet.Commands;
+using NuGet.Common;
 using NuProgram = NuGet.Program;
+using NuConsole = NuGet.Common.Console;
+using SysConsole = System.Console;
 namespace Contoso
 {
     public class NuGet
@@ -53,64 +57,52 @@ namespace Contoso
             }
         }
 
-        public static void NuMain(StringBuilder b, string path, params string[] args)
-        {
-            var lastOut = Console.Out;
-            var fileSystem = new PhysicalFileSystem(path ?? Directory.GetCurrentDirectory());
-            try
-            {
-                Console.SetOut(new ConsoleWriter(b));
-                RemoveOldFile(fileSystem);
-                var program = new NuProgram();
-                _initializeMethod.Invoke(program, new[] { fileSystem });
-                HttpClient.DefaultCredentialProvider = new ConsoleCredentialProvider();
-                foreach (var command2 in program.Commands)
-                    program.Manager.RegisterCommand(command2);
-                var command = (new CommandLineParser(program.Manager).ParseCommandLine(args) ?? program.HelpCommand);
-                if (!NuProgram.ArgumentCountValid(command))
-                {
-                    var commandName = command.CommandAttribute.CommandName;
-                    Console.WriteLine("InvalidArguments", commandName);
-                    program.HelpCommand.ViewHelpForCommand(commandName);
-                }
-                else
-                    command.Execute();
-            }
-            finally { Console.SetOut(lastOut); }
-        }
-
+        public static void NuMain(StringBuilder b, string path, params string[] args) { NuMain(b, path, m => new CommandLineParser(m).ParseCommandLine(args)); }
         public static void NuMain(StringBuilder b, string path, Func<ICommandManager, ICommand> commandBuilder)
         {
-            var lastOut = Console.Out;
+            var console = new NuConsole();
             var fileSystem = new PhysicalFileSystem(path ?? Directory.GetCurrentDirectory());
+            var lastOut = SysConsole.Out;
             try
             {
-                Console.SetOut(new ConsoleWriter(b));
+                SysConsole.SetOut(new ConsoleWriter(b));
+                //
                 RemoveOldFile(fileSystem);
                 var program = new NuProgram();
                 _initializeMethod.Invoke(program, new[] { fileSystem });
-                HttpClient.DefaultCredentialProvider = new ConsoleCredentialProvider();
-                foreach (var command2 in program.Commands)
-                    program.Manager.RegisterCommand(command2);
-                var command = commandBuilder(program.Manager);
-                if (!NuProgram.ArgumentCountValid(command))
+                //HttpClient.DefaultCredentialProvider = new ConsoleCredentialProvider();
+                foreach (var command in program.Commands)
+                    program.Manager.RegisterCommand(command);
+                var command2 = (commandBuilder(program.Manager) ?? program.HelpCommand);
+                if (!NuProgram.ArgumentCountValid(command2))
                 {
-                    var commandName = command.CommandAttribute.CommandName;
-                    Console.WriteLine("InvalidArguments", commandName);
+                    var commandName = command2.CommandAttribute.CommandName;
+                    console.WriteLine("InvalidArguments", new object[] { commandName });
                     program.HelpCommand.ViewHelpForCommand(commandName);
                 }
                 else
-                    command.Execute();
+                {
+                    SetConsoleInteractivity(console, command2 as Command);
+                    command2.Execute();
+                }
             }
-            finally { Console.SetOut(lastOut); }
+            finally { SysConsole.SetOut(lastOut); }
         }
-
 
         private static void RemoveOldFile(IFileSystem fileSystem)
         {
             var path = typeof(Program).Assembly.Location + ".old";
             try { if (fileSystem.FileExists(path)) fileSystem.DeleteFile(path); }
             catch { }
+        }
+
+        private static void SetConsoleInteractivity(IConsole console, Command command)
+        {
+            var environmentVariable = Environment.GetEnvironmentVariable("NUGET_EXE_NO_PROMPT");
+            var str2 = Environment.GetEnvironmentVariable("VisualStudioVersion");
+            console.IsNonInteractive = (!string.IsNullOrEmpty(environmentVariable) || !string.IsNullOrEmpty(str2)) || (command != null && command.NonInteractive);
+            if (command != null)
+                console.Verbosity = command.Verbosity;
         }
     }
 }

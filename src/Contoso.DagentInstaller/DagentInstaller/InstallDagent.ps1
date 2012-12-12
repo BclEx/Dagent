@@ -22,8 +22,8 @@
 # THE SOFTWARE.
 # ==============================================================================
 
-$installerUrl = "http://nuget.degdarwin.com/api/v2/package/dagent/1.0.0.0"
-#$installerUrl = "file:///C:/T_/Packages/dagent.1.0.0.0.nupkg"
+$installerUrl = "http://nuget.degdarwin.com/api/v2/package/dagent/1.0.0"
+#$installerUrl = "file:///C:/T_/Packages/dagent.1.0.0.nupkg"
 $tempPath = Join-Path $env:TEMP "dagent"
 if (!(Test-Path $tempPath)) { [IO.Directory]::CreateDirectory($tempPath) }
 

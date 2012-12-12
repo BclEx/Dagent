@@ -26,15 +26,13 @@ THE SOFTWARE.
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.IO;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
-using Microsoft.PowerShell;
-using NuGet;
 using System.Threading;
+using Microsoft.PowerShell;
 namespace Contoso.PowerShell
 {
-    internal static class RunspaceExtensions
+    internal static partial class RunspaceExtensions
     {
         public static Collection<PSObject> Invoke(this Runspace runspace, string command, object[] inputs, bool outputResults)
         {
@@ -137,16 +135,6 @@ namespace Contoso.PowerShell
         {
             var command = string.Format(CultureInfo.InvariantCulture, "Set-ExecutionPolicy {0} -Scope {1} -Force", policy.ToString(), scope.ToString());
             runspace.Invoke(command, null, false);
-        }
-
-        public static void ExecuteScript(this Runspace runspace, string installPath, string scriptPath, IPackage package)
-        {
-            var fullPath = Path.Combine(installPath, scriptPath);
-            if (File.Exists(fullPath))
-            {
-                var folderPath = Path.GetDirectoryName(fullPath);
-                runspace.Invoke("$__pc_args=@(); $input|%{$__pc_args+=$_}; & " + Utility.EscapePSPath(fullPath) + " $__pc_args[0] $__pc_args[1] $__pc_args[2]; Remove-Variable __pc_args -Scope 0", new object[] { installPath, folderPath, package }, outputResults: true);
-            }
         }
 
         public static void ImportModule(this Runspace runspace, string modulePath) { runspace.Invoke("Import-Module " + Utility.EscapePSPath(modulePath), null, false); }

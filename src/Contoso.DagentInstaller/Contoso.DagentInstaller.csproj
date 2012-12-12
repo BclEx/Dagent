@@ -47,10 +47,9 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Content Include="Dagent\Readme.txt" />
+    <Content Include="App.config" />
     <None Include="DagentInstaller\InstallDagent.cmd" />
     <None Include="DagentInstaller\InstallDagent.ps1" />
-    <None Include="DagentInstaller\PackNPush.cmd" />
     <None Include="tools\DagentInstaller.ps1" />
     <None Include="tools\DagentSetup.psm1" />
     <None Include="tools\init.ps1" />
@@ -58,6 +57,9 @@
   <ItemGroup>
     <Folder Include="Dagent\lib\" />
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dagent\Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

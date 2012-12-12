@@ -27,16 +27,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NuGet;
-using System.ComponentModel.Composition;
 namespace Contoso.Nuget
 {
     public interface IPackageAgentProvider
     {
+        void DisablePackageAgent(PackageAgent source);
+        bool IsPackageAgentEnabled(PackageAgent source);
         IEnumerable<PackageAgent> LoadPackageAgents();
         void SavePackageAgents(IEnumerable<PackageAgent> remotes);
     }
 
-    [Export(typeof(IPackageAgentProvider))]
+    //[Export(typeof(IPackageAgentProvider))]
     public class PackageAgentProvider : IPackageAgentProvider
     {
         private readonly IEnumerable<PackageAgent> _defaultPackageAgents;
@@ -45,7 +46,7 @@ namespace Contoso.Nuget
         internal const string DisabledPackageAgentsSectionName = "disabledPackageAgents";
         internal const string PackageAgentsSectionName = "packageAgents";
 
-        [ImportingConstructor]
+        //[ImportingConstructor]
         public PackageAgentProvider(ISettings settingsManager)
             : this(settingsManager, defaultAgents: null) { }
         public PackageAgentProvider(ISettings settingsManager, IEnumerable<PackageAgent> defaultAgents)
@@ -59,34 +60,50 @@ namespace Contoso.Nuget
             _migratePackageAgents = migratePackageAgents;
         }
 
+        public void DisablePackageAgent(PackageAgent source)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            _settingsManager.SetValue("disabledPackageSources", source.Name, "true");
+        }
+
+        public bool IsPackageAgentEnabled(PackageAgent source)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            return string.IsNullOrEmpty(_settingsManager.GetValue("disabledPackageSources", source.Name));
+        }
+
         public IEnumerable<PackageAgent> LoadPackageAgents()
         {
             var settingsValues = _settingsManager.GetValues(PackageAgentsSectionName);
-            if (settingsValues == null || !settingsValues.Any())
+            if (settingsValues.IsEmpty())
                 return _defaultPackageAgents;
-            var disabledAgents = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
-            var disabledAgentsValues = _settingsManager.GetValues(DisabledPackageAgentsSectionName);
-            if (disabledAgentsValues != null)
-                foreach (var pair in disabledAgentsValues)
-                    disabledAgents.Add(pair.Key);
+            //
+            var disabledAgentsValues = (_settingsManager.GetValues(DisabledPackageAgentsSectionName) ?? Enumerable.Empty<KeyValuePair<string, string>>());
+            var disabledAgents = new HashSet<string>(disabledAgentsValues.Select(x => x.Key), StringComparer.CurrentCultureIgnoreCase);
             var loadedPackageAgents = settingsValues.Select(p => new PackageAgent(p.Value, p.Key, null, !disabledAgents.Contains(p.Key))).ToList();
             if (_migratePackageAgents != null)
-            {
-                var hasChanges = false;
-                for (var i = 0; i < loadedPackageAgents.Count; i++)
-                {
-                    var pa = loadedPackageAgents[i];
-                    if (_migratePackageAgents.ContainsKey(pa))
-                    {
-                        loadedPackageAgents[i] = _migratePackageAgents[pa];
-                        loadedPackageAgents[i].IsEnabled = pa.IsEnabled;
-                        hasChanges = true;
-                    }
-                }
-                if (hasChanges)
-                    SavePackageAgents(loadedPackageAgents);
-            }
+                MigrateSources(loadedPackageAgents);
             return loadedPackageAgents;
+        }
+
+        private void MigrateSources(List<PackageAgent> loadedPackageAgents)
+        {
+            var hasChanges = false;
+            for (var i = 0; i < loadedPackageAgents.Count; i++)
+            {
+                PackageAgent source;
+                var key = loadedPackageAgents[i];
+                if (_migratePackageAgents.TryGetValue(key, out source))
+                {
+                    loadedPackageAgents[i] = source;
+                    loadedPackageAgents[i].IsEnabled = key.IsEnabled;
+                    hasChanges = true;
+                }
+            }
+            if (hasChanges)
+                SavePackageAgents(loadedPackageAgents);
         }
 
         public void SavePackageAgents(IEnumerable<PackageAgent> remotes)

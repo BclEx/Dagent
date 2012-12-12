@@ -1,0 +1,631 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Contoso.Abstract.RhinoServiceBus</name>
+    </assembly>
+    <members>
+        <member name="T:Contoso.Abstract.CommonLoggingFactoryAdapter">
+            <summary>
+            CommonLoggingFactoryAdapter
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.CommonLoggingFactoryAdapter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.CommonLoggingFactoryAdapter"/> class.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.CommonLoggingFactoryAdapter.#ctor(System.Abstract.IServiceLog)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.CommonLoggingFactoryAdapter"/> class.
+            </summary>
+            <param name="log">The log.</param>
+        </member>
+        <member name="M:Contoso.Abstract.CommonLoggingFactoryAdapter.GetLogger(System.String)">
+            <summary>
+            Gets the logger.
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.CommonLoggingFactoryAdapter.GetLogger(System.Type)">
+            <summary>
+            Gets the logger.
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.CommonLoggingFactoryAdapter.EnsureRegistration">
+            <summary>
+            Ensures the registration.
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.BootstrapRhinoServiceBusLoadBalancedHost">
+            <summary>
+            BootstrapRhinoServiceBusLoadBalancedHost
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.BootstrapRhinoServiceBusHost">
+            <summary>
+            BootstrapRhinoServiceBusHost
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper">
+            <summary>
+            ServiceLocatorBootStrapper
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper"/> class.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.#ctor(System.Abstract.IServiceLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper"/> class.
+            </summary>
+            <param name="locator">The locator.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.ConfigureBusFacility(Rhino.ServiceBus.Impl.AbstractRhinoServiceBusConfiguration)">
+            <summary>
+            Configures the bus facility.
+            </summary>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.ConfigureConsumer(System.Abstract.IServiceRegistrar,System.Type)">
+            <summary>
+            Configures the consumer.
+            </summary>
+            <param name="r">The r.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.ConfigureContainer">
+            <summary>
+            Configures the container.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.CreateContainer">
+            <summary>
+            Creates the container.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.Dispose">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.ExecuteDeploymentActions(System.String)">
+            <summary>
+            Executes the deployment actions.
+            </summary>
+            <param name="user">The user.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.ExecuteEnvironmentValidationActions">
+            <summary>
+            Executes the environment validation actions.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.GetInstance``1">
+            <summary>
+            Gets the instance.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="P:Contoso.Abstract.RhinoServiceBus.ServiceLocatorBootStrapper.Container">
+            <summary>
+            Gets the container.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusHost.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.BootstrapRhinoServiceBusHost"/> class.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusHost.#ctor(System.Abstract.IServiceLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.BootstrapRhinoServiceBusHost"/> class.
+            </summary>
+            <param name="locator">The locator.</param>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusHost.#ctor(System.Abstract.IServiceLocator,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.BootstrapRhinoServiceBusHost"/> class.
+            </summary>
+            <param name="locator">The locator.</param>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusHost.Initialize">
+            <summary>
+            Initializes this instance.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusHost.Open(System.Abstract.IServiceBus)">
+            <summary>
+            Opens the specified bus.
+            </summary>
+            <param name="bus">The bus.</param>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusHost.Close">
+            <summary>
+            Closes this instance.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusHost.InitializeContainer">
+            <summary>
+            Initializes the container.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusHost.OnEndStart">
+            <summary>
+            Called when [end start].
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusHost.Dispose">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusLoadBalancedHost.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.BootstrapRhinoServiceBusLoadBalancedHost"/> class.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusLoadBalancedHost.#ctor(System.Abstract.IServiceLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.BootstrapRhinoServiceBusLoadBalancedHost"/> class.
+            </summary>
+            <param name="locator">The locator.</param>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusLoadBalancedHost.#ctor(System.Abstract.IServiceLocator,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.BootstrapRhinoServiceBusLoadBalancedHost"/> class.
+            </summary>
+            <param name="locator">The locator.</param>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:Contoso.Abstract.BootstrapRhinoServiceBusLoadBalancedHost.CreateConfiguration">
+            <summary>
+            Creates the configuration.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor">
+            <summary>
+            OnewayRhinoWrapServiceBusAbstractor
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.OnewayRhinoServiceBusAbstractor">
+            <summary>
+            RhinoServiceBusAbstractor
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.IOnewayRhinoServiceBus">
+            <summary>
+            IRhinoServiceBus
+            </summary>
+        </member>
+        <member name="P:Contoso.Abstract.IOnewayRhinoServiceBus.Bus">
+            <summary>
+            Gets the bus.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.OnewayRhinoServiceBusAbstractor"/> class.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.OnewayRhinoServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.#ctor(Rhino.ServiceBus.Config.BusConfigurationSection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.OnewayRhinoServiceBusAbstractor"/> class.
+            </summary>
+            <param name="busConfiguration">The bus configuration.</param>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator,Rhino.ServiceBus.Config.BusConfigurationSection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.OnewayRhinoServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="busConfiguration">The bus configuration.</param>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator,Rhino.ServiceBus.IOnewayBus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.OnewayRhinoServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="bus">The bus.</param>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.GetService(System.Type)">
+            <summary>
+            Gets the service object of the specified type.
+            </summary>
+            <param name="serviceType">An object that specifies the type of service object to get.</param>
+            <returns>
+            A service object of type <paramref name="serviceType"/>.
+            -or-
+            null if there is no service object of type <paramref name="serviceType"/>.
+            </returns>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.CreateMessage``1(System.Action{``0})">
+            <summary>
+            Creates the message.
+            </summary>
+            <typeparam name="TMessage">The type of the message.</typeparam>
+            <param name="messageBuilder">The message builder.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.Send(System.Abstract.IServiceBusEndpoint,System.Object[])">
+            <summary>
+            Sends the specified endpoint.
+            </summary>
+            <param name="endpoint">The endpoint.</param>
+            <param name="messages">The messages.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.Reply(System.Object[])">
+            <summary>
+            Replies the specified messages.
+            </summary>
+            <param name="messages">The messages.</param>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.DefaultBusCreator(System.Abstract.IServiceLocator,Rhino.ServiceBus.Config.BusConfigurationSection,System.Action{Rhino.ServiceBus.Impl.AbstractRhinoServiceBusConfiguration})">
+            <summary>
+            Defaults the bus creator.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="busConfiguration">The bus configuration.</param>
+            <param name="configurator">The configurator.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Contoso.Abstract.OnewayRhinoServiceBusAbstractor.Bus">
+            <summary>
+            Gets the bus.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor.#ctor(Rhino.ServiceBus.Config.BusConfigurationSection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+            <param name="busConfiguration">The bus configuration.</param>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator,Rhino.ServiceBus.Config.BusConfigurationSection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="busConfiguration">The bus configuration.</param>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator,Rhino.ServiceBus.IOnewayBus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="bus">The bus.</param>
+        </member>
+        <member name="M:Contoso.Abstract.OnewayRhinoWrapServiceBusAbstractor.Send(System.Abstract.IServiceBusEndpoint,System.Object[])">
+            <summary>
+            Sends the specified endpoint.
+            </summary>
+            <param name="endpoint">The endpoint.</param>
+            <param name="messages">The messages.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoServiceBus.Serializers.XmlMessageSerializer">
+            <summary>
+            XmlMessageSerializer
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.Serializers.XmlMessageSerializer.#ctor(Rhino.ServiceBus.Internal.IReflection,Rhino.ServiceBus.Internal.IServiceLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBus.Serializers.XmlMessageSerializer"/> class.
+            </summary>
+            <param name="reflection">The reflection.</param>
+            <param name="serviceLocator">The service locator.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.Serializers.XmlMessageSerializer.Serialize(System.Object[],System.IO.Stream)">
+            <summary>
+            Serializes the specified messages.
+            </summary>
+            <param name="messages">The messages.</param>
+            <param name="messageStream">The message stream.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.Serializers.XmlMessageSerializer.FromString(System.Type,System.String)">
+            <summary>
+            Froms the string.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.Serializers.XmlMessageSerializer.Deserialize(System.IO.Stream)">
+            <summary>
+            Deserializes the specified message.
+            </summary>
+            <param name="message">The message.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoWrapServiceBusAbstractor">
+            <summary>
+            RhinoWrapServiceBusAbstractor
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoServiceBusAbstractor">
+            <summary>
+            RhinoServiceBusAbstractor
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.IRhinoServiceBus">
+            <summary>
+            IRhinoServiceBus
+            </summary>
+        </member>
+        <member name="P:Contoso.Abstract.IRhinoServiceBus.Bus">
+            <summary>
+            Gets the bus.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBusAbstractor"/> class.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.#ctor(Rhino.ServiceBus.Config.BusConfigurationSection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBusAbstractor"/> class.
+            </summary>
+            <param name="busConfiguration">The bus configuration.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator,Rhino.ServiceBus.Config.BusConfigurationSection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="busConfiguration">The bus configuration.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator,Rhino.ServiceBus.IStartableServiceBus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="bus">The bus.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator,Rhino.ServiceBus.IServiceBus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="bus">The bus.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.GetService(System.Type)">
+            <summary>
+            Gets the service object of the specified type.
+            </summary>
+            <param name="serviceType">An object that specifies the type of service object to get.</param>
+            <returns>
+            A service object of type <paramref name="serviceType"/>.
+            -or-
+            null if there is no service object of type <paramref name="serviceType"/>.
+            </returns>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.CreateMessage``1(System.Action{``0})">
+            <summary>
+            Creates the message.
+            </summary>
+            <typeparam name="TMessage">The type of the message.</typeparam>
+            <param name="messageBuilder">The message builder.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.Send(System.Abstract.IServiceBusEndpoint,System.Object[])">
+            <summary>
+            Sends the specified endpoint.
+            </summary>
+            <param name="endpoint">The endpoint.</param>
+            <param name="messages">The messages.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.Reply(System.Object[])">
+            <summary>
+            Replies the specified messages.
+            </summary>
+            <param name="messages">The messages.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.Publish(System.Object[])">
+            <summary>
+            Publishes the specified messages.
+            </summary>
+            <param name="messages">The messages.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.Subscribe(System.Type,System.Predicate{System.Object})">
+            <summary>
+            Subscribes the specified message type.
+            </summary>
+            <param name="messageType">Type of the message.</param>
+            <param name="condition">The condition.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.Unsubscribe(System.Type)">
+            <summary>
+            Unsubscribes the specified message type.
+            </summary>
+            <param name="messageType">Type of the message.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.DefaultBusCreator(System.Abstract.IServiceLocator,Rhino.ServiceBus.Config.BusConfigurationSection,System.Action{Rhino.ServiceBus.Impl.AbstractRhinoServiceBusConfiguration})">
+            <summary>
+            Defaults the bus creator.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="busConfiguration">The bus configuration.</param>
+            <param name="configurator">The configurator.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.ConfigureConsumers(System.Abstract.IServiceLocator,System.Reflection.Assembly,System.Predicate{System.Type})">
+            <summary>
+            Configures the consumers.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="assemblyToScan">The assembly to scan.</param>
+            <param name="condition">The condition.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBusAbstractor.ConfigureConsumer(System.Abstract.IServiceRegistrar,System.Type)">
+            <summary>
+            Configures the consumer.
+            </summary>
+            <param name="r">The r.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="P:Contoso.Abstract.RhinoServiceBusAbstractor.Bus">
+            <summary>
+            Gets the bus.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.#ctor(Rhino.ServiceBus.Config.BusConfigurationSection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+            <param name="busConfiguration">The bus configuration.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator,Rhino.ServiceBus.Config.BusConfigurationSection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="busConfiguration">The bus configuration.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator,Rhino.ServiceBus.IStartableServiceBus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="bus">The bus.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.#ctor(System.Abstract.IServiceLocator,Rhino.ServiceBus.IServiceBus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoWrapServiceBusAbstractor"/> class.
+            </summary>
+            <param name="serviceLocator">The service locator.</param>
+            <param name="bus">The bus.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.Send(System.Abstract.IServiceBusEndpoint,System.Object[])">
+            <summary>
+            Sends the specified endpoint.
+            </summary>
+            <param name="endpoint">The endpoint.</param>
+            <param name="messages">The messages.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.Reply(System.Object[])">
+            <summary>
+            Replies the specified messages.
+            </summary>
+            <param name="messages">The messages.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.Publish(System.Object[])">
+            <summary>
+            Publishes the specified messages.
+            </summary>
+            <param name="messages">The messages.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.Subscribe(System.Type,System.Predicate{System.Object})">
+            <summary>
+            Subscribes the specified message type.
+            </summary>
+            <param name="messageType">Type of the message.</param>
+            <param name="condition">The condition.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoWrapServiceBusAbstractor.Unsubscribe(System.Type)">
+            <summary>
+            Unsubscribes the specified message type.
+            </summary>
+            <param name="messageType">Type of the message.</param>
+        </member>
+        <member name="T:Contoso.Abstract.IRhinoServiceMessageHandler`1">
+            <summary>
+            IRhinoServiceMessageHandler
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoServiceBusTransport.Transport`1">
+            <summary>
+            Transport
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoServiceBusTransport.TransportHandler`1">
+            <summary>
+            TransportHandler
+            </summary>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoServiceBus.ServiceLocatorLoadBalancerBootStrapper">
+            <summary>
+            ServiceLocatorLoadBalancerBootStrapper
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorLoadBalancerBootStrapper.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBus.ServiceLocatorLoadBalancerBootStrapper"/> class.
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorLoadBalancerBootStrapper.#ctor(System.Abstract.IServiceLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Contoso.Abstract.RhinoServiceBus.ServiceLocatorLoadBalancerBootStrapper"/> class.
+            </summary>
+            <param name="locator">The locator.</param>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.ServiceLocatorLoadBalancerBootStrapper.CreateConfiguration">
+            <summary>
+            Creates the configuration.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Contoso.Abstract.RhinoServiceBus.Extensions">
+            <summary>
+            Extensions
+            </summary>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.Extensions.UseAbstractServiceLocator(Rhino.ServiceBus.Impl.AbstractRhinoServiceBusConfiguration)">
+            <summary>
+            Uses the abstract service locator.
+            </summary>
+            <param name="configuration">The configuration.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contoso.Abstract.RhinoServiceBus.Extensions.UseAbstractServiceLocator(Rhino.ServiceBus.Impl.AbstractRhinoServiceBusConfiguration,System.Abstract.IServiceLocator)">
+            <summary>
+            Uses the abstract service locator.
+            </summary>
+            <param name="configuration">The configuration.</param>
+            <param name="locator">The locator.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
