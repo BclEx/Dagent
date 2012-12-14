@@ -71,7 +71,7 @@ namespace Contoso.Bus.NugetHandlers
                         else
                             InstallPackagesInline(message.Items, out arg0, out version);
                         // install
-                        NuGet.NuMain(b, null, m =>
+                        NuGetApp.NuMain(b, null, m =>
                             {
                                 var command = (DeployLocalCommand)m.GetCommands().FirstOrDefault(x => x is DeployLocalCommand);
                                 if (command == null)

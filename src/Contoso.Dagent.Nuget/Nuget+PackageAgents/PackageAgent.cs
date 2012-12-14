@@ -26,7 +26,7 @@ THE SOFTWARE.
 using System;
 using System.Runtime.Serialization;
 using NuGet;
-namespace Contoso.Nuget
+namespace Contoso.NuGet
 {
     [DataContract]
     public class PackageAgent : IEquatable<PackageAgent>

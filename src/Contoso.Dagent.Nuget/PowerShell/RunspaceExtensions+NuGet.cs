@@ -26,6 +26,8 @@ THE SOFTWARE.
 using System.IO;
 using System.Management.Automation.Runspaces;
 using NuGet;
+using System.Collections.Generic;
+using System.Management.Automation;
 namespace Contoso.PowerShell
 {
     internal static partial class RunspaceExtensions

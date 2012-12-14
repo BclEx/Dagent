@@ -28,7 +28,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NuGet;
 using System.ComponentModel.Composition;
-namespace Contoso.Nuget
+namespace Contoso.NuGet
 {
     public interface IPackageAgentProvider
     {

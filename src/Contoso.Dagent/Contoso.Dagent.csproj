@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>x86</PlatformTarget>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -101,7 +102,7 @@
     <Compile Include="Hosting\ImpersonationContext.cs" />
     <Compile Include="Hosting\HostingEnvironment+Identity.cs" />
     <Compile Include="Hosting\HostingEnvironment.cs" />
-    <Compile Include="NuGet.cs" />
+    <Compile Include="NuGetApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domains\ApplicationContext.cs" />
     <Compile Include="Domains\ITenantProvider.cs" />

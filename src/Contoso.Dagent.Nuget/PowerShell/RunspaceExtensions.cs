@@ -30,6 +30,7 @@ using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using System.Threading;
 using Microsoft.PowerShell;
+using MyPowerShell = System.Management.Automation.PowerShell;
 namespace Contoso.PowerShell
 {
     internal static partial class RunspaceExtensions
@@ -60,6 +61,14 @@ namespace Contoso.PowerShell
                 threadToKill.Abort();
                 throw new TimeoutException();
             }
+        }
+
+        public static PSDataCollection<PSObject> Invoke(this MyPowerShell powershell, int timeoutMilliseconds)
+        {
+            var result = powershell.BeginInvoke();
+            if (result.AsyncWaitHandle.WaitOne(timeoutMilliseconds))
+                return powershell.EndInvoke(result);
+            throw new TimeoutException();
         }
 
         public static Pipeline InvokeAsync(this Runspace runspace, string command, object[] inputs, bool outputResults, EventHandler<PipelineStateEventArgs> pipelineStateChanged)

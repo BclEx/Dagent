@@ -35,7 +35,7 @@ using NuConsole = NuGet.Common.Console;
 using SysConsole = System.Console;
 namespace Contoso
 {
-    public class NuGet
+    public class NuGetApp
     {
         private static readonly MethodInfo _initializeMethod = typeof(NuProgram).GetMethod("Initialize", BindingFlags.NonPublic | BindingFlags.Instance);
 
@@ -69,7 +69,7 @@ namespace Contoso
                 //
                 RemoveOldFile(fileSystem);
                 var program = new NuProgram();
-                _initializeMethod.Invoke(program, new[] { fileSystem });
+                _initializeMethod.Invoke(program, new object[] { fileSystem, console });
                 //HttpClient.DefaultCredentialProvider = new ConsoleCredentialProvider();
                 foreach (var command in program.Commands)
                     program.Manager.RegisterCommand(command);

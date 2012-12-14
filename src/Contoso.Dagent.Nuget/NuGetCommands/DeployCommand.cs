@@ -31,7 +31,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using Contoso.Bus.NugetMessages;
-using Contoso.Nuget;
+using Contoso.NuGet;
 using NuGet;
 using NuGet.Commands;
 using NuGet.Common;

@@ -26,7 +26,7 @@ THE SOFTWARE.
 using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace Contoso.Nuget
+namespace Contoso.NuGet
 {
     public static class PackageAgentProviderExtensions
     {

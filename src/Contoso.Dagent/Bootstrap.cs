@@ -27,15 +27,14 @@ using System.Abstract;
 using System.Configuration;
 using Contoso.Abstract;
 using Contoso.Configuration;
-using log4net.Config;
 using Contoso.Hosting;
+using log4net.Config;
 namespace Contoso
 {
     public class Bootstrap : BootstrapRhinoServiceBusHost
     {
         static Bootstrap()
         {
-            ServiceLogManager.SetProvider(() => new Log4NetServiceLog("Dagent"));
             ServiceLocatorManager.SetProvider(() => new UnityServiceLocator()) // new MicroServiceLocator())
                 .Register(r =>
                 {
@@ -45,6 +44,7 @@ namespace Contoso
                         XmlConfigurator.Configure();
                     HostingEnvironment.Initialize();
                 });
+            ServiceLogManager.SetProvider(() => new Log4NetServiceLog("Dagent"));
             var o = ServiceLocatorManager.Current;
         }
 

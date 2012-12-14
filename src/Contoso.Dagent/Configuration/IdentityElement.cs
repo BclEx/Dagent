@@ -32,8 +32,8 @@ namespace Contoso.Configuration
     {
         private ImpersonateTokenRef _impersonateTokenRef = new ImpersonateTokenRef(IntPtr.Zero);
         private string _error = string.Empty;
-        private string _userName;
-        private string _password;
+        private string _userName = null;
+        private string _password = null;
 
         [ConfigurationProperty("impersonate", DefaultValue = false)]
         public bool Impersonate

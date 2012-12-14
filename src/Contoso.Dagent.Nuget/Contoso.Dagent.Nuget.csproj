@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -62,12 +63,12 @@
   <ItemGroup>
     <Compile Include="Bus\NugetHandlers\DeployReplyHandler.cs" />
     <Compile Include="Bus\NugetMessages\DeployReply.cs" />
-    <Compile Include="Nuget+PackageAgents\PackageAgentProviderExtensions.cs" />
-    <Compile Include="Nuget+PackageAgents\PackageAgent.cs" />
+    <Compile Include="NuGet+PackageAgents\PackageAgentProviderExtensions.cs" />
+    <Compile Include="NuGet+PackageAgents\PackageAgent.cs" />
     <Compile Include="NuGet\PSScriptExecutor.cs" />
     <Compile Include="NuGetCommands\DeployLocalCommand.cs" />
     <Compile Include="NuGetCommands\AgentsCommand.cs" />
-    <Compile Include="Nuget+PackageAgents\PackageAgentProvider.cs" />
+    <Compile Include="NuGet+PackageAgents\PackageAgentProvider.cs" />
     <Compile Include="PowerShell\RunspaceExtensions+NuGet.cs" />
     <Compile Include="PowerShell\RunspaceExtensions.cs" />
     <Compile Include="Utility.cs" />

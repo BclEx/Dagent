@@ -26,7 +26,7 @@ THE SOFTWARE.
 using System;
 using System.ComponentModel.Composition;
 using System.Reflection;
-using Contoso.Nuget;
+using Contoso.NuGet;
 using NuGet;
 using NuGet.Commands;
 using NuGet.Common;
@@ -37,9 +37,10 @@ namespace Contoso.NuGetCommands
     {
         [ImportingConstructor]
         public DeployLocalCommand(IScriptExecutor scriptExecutor, IPackageRepositoryFactory packageRepositoryFactory, IPackageSourceProvider sourceProvider, IFileSystem startingPoint)
-            : base(packageRepositoryFactory, sourceProvider, startingPoint)
+            : base(packageRepositoryFactory, sourceProvider, Settings.LoadDefaultSettings(startingPoint), null)
         {
             ScriptExecutor = scriptExecutor;
+            NoCache = true;
         }
 
         protected override IPackageManager CreatePackageManager(IFileSystem fileSystem)

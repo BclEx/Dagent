@@ -26,7 +26,7 @@ THE SOFTWARE.
 using System;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Contoso.Nuget;
+using Contoso.NuGet;
 using NuGet;
 using NuGet.Commands;
 using NuGet.Common;
